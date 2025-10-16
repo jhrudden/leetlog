@@ -44,9 +44,3 @@ class Plan(BaseModel):
 
         with open(str(path), "r", encoding="utf-8") as f:
             return cls.model_validate(json.load(f))
-
-
-class PlanType(StrEnum):
-    """Enumeration of available plan types."""
-
-    TOP_150 = "top_150"

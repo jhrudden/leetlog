@@ -1,5 +1,5 @@
 from src.command.complete import CompleteCommand
-from src.command.init_plan import InitPlanCommand
-from src.command.sample_plan import SamplePlanCommand
+from src.command.init import InitCommand
+from src.command.sample import SampleCommand
 
-__all__ = ["InitPlanCommand", "CompleteCommand", "SamplePlanCommand"]
+__all__ = ["InitCommand", "CompleteCommand", "SampleCommand"]

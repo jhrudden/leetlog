@@ -5,7 +5,7 @@ from src.config import PLANS_DIR
 from src.models import Plan
 
 
-class SamplePlanCommand(Command):
+class SampleCommand(Command):
     """Sample n random question IDs from a plan."""
 
     @classmethod

@@ -2,11 +2,10 @@ import json
 
 from src.command.base import Command
 from src.config import PLANS_DIR
-from src.models import PlanType
 from src.parser import PlanParser
 
 
-class InitPlanCommand(Command):
+class InitCommand(Command):
     """Initialize a new LeetCode plan for tracking and progress."""
 
     @classmethod
@@ -29,20 +28,20 @@ class InitPlanCommand(Command):
 
     def __call__(self) -> None:
         """Execute the init command."""
-        plan_type = PlanType(self.args.plan_type)
-        output_path = PLANS_DIR / f"{self.args.plan_type}.json"
+        plan_type = self.args.plan_type
+        output_path = PLANS_DIR / f"{plan_type}.json"
 
         if output_path.exists():
             raise ValueError(
                 "A plan already exists. Delete it first if you want to reinitialize."
             )
 
-        parser = PlanParser(kind=plan_type)
+        parser = PlanParser(plan_name=plan_type)
         plan = parser.extract()
 
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(plan.model_dump(), f, indent=2)
 
         print(
-            f"Initialized {len(plan.questions)} questions for {plan_type.value} at {output_path}"
+            f"Initialized {len(plan.questions)} questions for {plan_type} at {output_path}"
         )
