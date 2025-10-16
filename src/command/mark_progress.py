@@ -8,8 +8,25 @@ from src.models import Plan
 class MarkCompleteCommand(Command):
     """Mark specified questions as complete."""
 
+    @classmethod
+    def init_parser(cls, parser_builder):
+        """Initialize parser for extract-plan command."""
+        parser = parser_builder("mark-complete", "Mark questions as complete")
+        parser.add_argument(
+            "plan_type",
+            type=str,
+            help=(
+                "leetcode plan to update progress for (e.g., 'top-interview-150', "
+                "'30-days-of-javascript')"
+            ),
+        )
+        parser.add_argument("ids", nargs="+", help="Question IDs to mark as complete")
+        parser.set_defaults(func=lambda args: cls(args)())
+
     def __call__(self) -> None:
         """Execute the mark-complete command."""
+        if not self.args.ids:
+            raise ValueError("at least one question ID is required")
         plan_path = PLANS_DIR / f"{self.args.plan_type}.json"
         plan = Plan.load(plan_path)
 
