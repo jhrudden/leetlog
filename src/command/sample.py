@@ -35,12 +35,15 @@ class SampleCommand(Command):
         plan_path = PLANS_DIR / f"{self.args.plan_type}.json"
         plan = Plan.load(plan_path)
 
-        question_ids = plan.unsolved_questions
+        unanswered_map = {q.id: q.name for q in plan.questions if not q.completed}
+        question_ids = list(unanswered_map.keys())
 
         # Sample n random IDs
         n = min(self.args.n, len(question_ids))
         sampled = random.sample(question_ids, n)
 
-        print(f"Sampled {n} question IDs:")
+        print(f"\nSampled {n} question(s) from '{self.args.plan_type}':")
+        print(f"{'ID':<8} {'Question Name'}")
+        print("-" * 50)
         for qid in sampled:
-            print(f"{qid}")
+            print(f"{qid:<8} {unanswered_map[qid]}")
