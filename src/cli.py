@@ -1,8 +1,8 @@
 import argparse
 
-from src.command import CompleteCommand, InitCommand, SampleCommand
+from src.command import CompleteCommand, InitCommand, SampleCommand, StatsCommand
 
-CMDS = [InitCommand, SampleCommand, CompleteCommand]
+CMDS = [InitCommand, SampleCommand, CompleteCommand, StatsCommand]
 
 
 def main() -> None:

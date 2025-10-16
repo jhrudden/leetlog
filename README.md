@@ -29,7 +29,7 @@ leetlog init <plan-slug>
 Track your progress by marking questions as completed:
 
 ```bash
-leetlog complete <question-id>
+leetlog complete <plan-slug> <question-id..>
 ```
 
 ### Sample random problems
@@ -37,11 +37,13 @@ leetlog complete <question-id>
 Get a random selection of unanswered problems from your plan:
 
 ```bash
-leetlog sample <count>
+leetlog sample <plan-slug> -n <count>
 ```
 
-## Features
+### Check plan progress
 
-- **init** - Fetch and initialize tracking for any LeetCode study plan
-- **complete** - Mark individual problems as completed in your local progress
-- **sample** - Randomly select unanswered problems to work on next
+Get plan completion percentage
+
+```bash
+leetlog stats <plan-slug>
+```
