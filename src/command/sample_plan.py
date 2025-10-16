@@ -11,7 +11,7 @@ class SamplePlanCommand(Command):
     @classmethod
     def init_parser(cls, parser_builder):
         """Initialize parser for extract-plan command."""
-        parser = parser_builder("sample-plan", "Sample random question IDs from a plan")
+        parser = parser_builder("sample", "Sample random question IDs from a plan")
         parser.add_argument(
             "plan_type",
             type=str,
