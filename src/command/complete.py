@@ -43,6 +43,6 @@ class CompleteCommand(Command):
                 marked += 1
 
         with open(plan_path, "w", encoding="utf-8") as f:
-            json.dump(plan.model_dump(), f, indent=2)
+            json.dump(plan.model_dump(mode="json"), f, indent=2)
 
         print(f"✅ Marked {marked} question(s) as complete in {self.args.plan_type}")
