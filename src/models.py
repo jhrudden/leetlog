@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from enum import StrEnum
 from pathlib import Path
 
@@ -11,6 +12,7 @@ class Question(BaseModel):
     name: str
     id: str
     completed: bool = Field(default=False)
+    completed_at: datetime | None = Field(default=None)
 
 
 class Plan(BaseModel):

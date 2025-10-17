@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 from src.command.base import Command
 from src.config import PLANS_DIR
@@ -38,6 +39,7 @@ class CompleteCommand(Command):
         for q in plan.questions:
             if q.id in ids_to_mark:
                 q.completed = True
+                q.completed_at = datetime.now()
                 marked += 1
 
         with open(plan_path, "w", encoding="utf-8") as f:
