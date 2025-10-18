@@ -38,6 +38,8 @@ class CompleteCommand(Command):
 
         for q in plan.questions:
             if q.id in ids_to_mark:
+                if q.completed:
+                    raise ValueError(f'Question {q.id} ("{q.name}") already completed')
                 q.completed = True
                 q.completed_at = datetime.now()
                 marked += 1
