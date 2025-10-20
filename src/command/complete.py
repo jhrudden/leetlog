@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from src.command.base import Command
 from src.config import PLANS_DIR
@@ -41,7 +41,7 @@ class CompleteCommand(Command):
                 if q.completed:
                     raise ValueError(f'Question {q.id} ("{q.name}") already completed')
                 q.completed = True
-                q.completed_at = datetime.now()
+                q.completed_at = datetime.now(timezone.utc)
                 marked += 1
 
         with open(plan_path, "w", encoding="utf-8") as f:

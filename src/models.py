@@ -1,6 +1,5 @@
 import json
-from datetime import datetime
-from enum import StrEnum
+from datetime import datetime, timezone
 from pathlib import Path
 
 from pydantic import BaseModel, Field, computed_field
@@ -20,6 +19,7 @@ class Plan(BaseModel):
 
     name: str
     questions: list[Question]
+    started_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     @computed_field()
     @property
